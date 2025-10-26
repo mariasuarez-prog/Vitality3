@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
@@ -21,14 +22,16 @@
         android:textSize="18sp"
         android:layout_marginBottom="8dp"/>
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressCalorias"
-        style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:progress="0"
-        android:progressDrawable="@drawable/progress_calorias"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="24dp"
+        android:indeterminate="false"
+        app:trackColor="#E0E0E0"
+        app:indicatorColor="#4CAF50"
+        app:trackThickness="24dp" />
+
 
     <Button
         android:id="@+id/btnCalorias"

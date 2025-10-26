@@ -3,9 +3,10 @@ package com.example.vitality3;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.ProgressBar;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import android.widget.TextView;
 import android.graphics.drawable.Drawable;
 import android.graphics.PorterDuff;
@@ -15,7 +16,7 @@ public class homeActivity extends AppCompatActivity {
 
     TextView tvWelcome, tvCaloriasTotales;
     Button btnCalorias, btnCerrarSesion;
-    ProgressBar progressCalorias;
+    LinearProgressIndicator progressCalorias;
     BDVitality dbHelper;
     String usuarioEmail;
     int metaDiaria = 2000; // Meta diaria de calorías
@@ -24,6 +25,15 @@ public class homeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        progressCalorias = findViewById(R.id.progressCalorias);
+        progressCalorias.setIndeterminate(false);
+        progressCalorias.setMax(2000);
+
+        progressCalorias.setProgress(5);    // debería verse casi vacío
+        Log.d("HomeActivityTest", "Progress después de set 5: " + progressCalorias.getProgress());
+
+        progressCalorias.setProgress(500);  // debería verse ~25%
+        Log.d("HomeActivityTest", "Progress después de set 500: " + progressCalorias.getProgress());
 
         tvWelcome = findViewById(R.id.tvWelcome);
         tvCaloriasTotales = findViewById(R.id.tvCaloriasTotales);
@@ -68,33 +78,27 @@ public class homeActivity extends AppCompatActivity {
     }
 
     private void mostrarCaloriasTotales() {
-        Cursor cursor = dbHelper.getCaloriasUsuario(usuarioEmail);
-        int total = 0;
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                int cantidad = cursor.getInt(cursor.getColumnIndexOrThrow("cantidad"));
-                total += cantidad;
-            } while (cursor.moveToNext());
-            cursor.close();
-        }
-
+        int total = dbHelper.getTotalCaloriasUsuario(usuarioEmail);
         tvCaloriasTotales.setText("Calorías totales: " + total + " kcal");
 
         progressCalorias.setMax(metaDiaria);
-        int progreso = total > metaDiaria ? metaDiaria : total;
-        progressCalorias.setProgress(progreso);
+        int progreso = Math.min(total, metaDiaria);
+        progressCalorias.setProgressCompat(progreso, true);
 
-        // Cambiar color según porcentaje
         float porcentaje = (float) total / metaDiaria;
-        Drawable progressDrawable = progressCalorias.getProgressDrawable().mutate();
 
-        if (porcentaje <= 1.0) { // dentro de la meta
-            progressDrawable.setColorFilter(0xFF4CAF50, PorterDuff.Mode.SRC_IN); // verde
-        } else { // sobrepasó la meta
-            progressDrawable.setColorFilter(0xFFF44336, PorterDuff.Mode.SRC_IN); // rojo
+        // Cambiar color dinámicamente
+        if (total <= 0) {
+            progressCalorias.setIndicatorColor(Color.parseColor("#BDBDBD")); // gris
+        } else if (porcentaje < 1.0f) {
+            progressCalorias.setIndicatorColor(Color.parseColor("#4CAF50")); // verde
+        } else {
+            progressCalorias.setIndicatorColor(Color.parseColor("#F44336")); // rojo
         }
-        progressCalorias.setProgressDrawable(progressDrawable);
+
+        Log.d("HomeActivity", "Progreso: " + progreso + " / " + metaDiaria + " (" + porcentaje + ")");
     }
+
 
     @Override
     protected void onResume() {

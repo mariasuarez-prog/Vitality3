@@ -88,9 +88,20 @@ public class BDVitality extends SQLiteOpenHelper {
         return resultado != -1;
     }
 
-    // Obtener calorías por usuario
     public Cursor getCaloriasUsuario(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM calorias WHERE email = ? ORDER BY id DESC", new String[]{email});
+    }
+
+    // Obtener calorías por usuario
+    public int getTotalCaloriasUsuario(String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(cantidad) AS total FROM calorias WHERE email = ?", new String[]{email});
+        int total = 0;
+        if (cursor.moveToFirst()) {
+            total = cursor.getInt(cursor.getColumnIndexOrThrow("total"));
+        }
+        cursor.close();
+        return total;
     }
 }
