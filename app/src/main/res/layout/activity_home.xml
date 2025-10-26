@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hola, Usuario"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvCaloriasTotales"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calorías totales: 0 kcal"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressCalorias"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:progress="0"
+        android:progressDrawable="@drawable/progress_calorias"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnCalorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar Calorías"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"/>
+</LinearLayout>
+
