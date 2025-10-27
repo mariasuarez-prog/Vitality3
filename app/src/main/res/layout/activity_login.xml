@@ -74,11 +74,11 @@
         android:layout_gravity="center"
         android:layout_marginTop="432dp"
         android:text="Regístrate aquí"
-        android:textColor="#27522B"
+        android:textColor="#463C3C"
         android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="16dp"
     android:layout_width="match_parent"
@@ -11,7 +12,7 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="24dp"
         android:text="Hola, Usuario"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -24,7 +25,7 @@
         android:id="@+id/tvCaloriasTotales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="280dp"
         android:text="Calorías totales: 0 kcal"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,11 +36,11 @@
         android:id="@+id/progressCalorias"
         android:layout_width="match_parent"
         android:layout_height="24dp"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="256dp"
         android:indeterminate="false"
         app:indicatorColor="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:trackColor="#E0E0E0"
@@ -49,8 +50,10 @@
         android:id="@+id/btnCalorias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="304dp"
+        android:backgroundTint="#61C161"
         android:text="Registrar Calorías"
+        android:textColorLink="#5FB464"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,12 +63,39 @@
         android:id="@+id/btnCerrarSesion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="648dp"
+        android:backgroundTint="#97BC9B"
         android:text="Cerrar Sesión"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="390dp"
+        android:layout_height="284dp"
+        tools:layout_editor_absoluteX="-5dp"
+        tools:layout_editor_absoluteY="368dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="362dp"
+        android:layout_height="31dp"
+        android:text="¡Tu meta diaria es de 2000 calorias!"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="-6dp"
+        tools:layout_editor_absoluteY="105dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="178dp"
+        android:layout_height="122dp"
+        android:text="En esta barra puedes ver que tan cerca estas de tu meta diaria."
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="135dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
