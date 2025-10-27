@@ -12,7 +12,7 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="Hola, Usuario"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -85,8 +85,8 @@
         android:text="¡Tu meta diaria es de 2000 calorias!"
         android:textAlignment="center"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="-6dp"
-        tools:layout_editor_absoluteY="105dp" />
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="82dp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -94,8 +94,16 @@
         android:layout_height="122dp"
         android:text="En esta barra puedes ver que tan cerca estas de tu meta diaria."
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="135dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="290dp"
+        android:layout_height="490dp"
+        app:srcCompat="@drawable/corazonhome__2_"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="-70dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

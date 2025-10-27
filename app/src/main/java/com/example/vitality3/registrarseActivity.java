@@ -49,7 +49,10 @@ public class registrarseActivity extends AppCompatActivity {
                     Boolean insert = dbHelper.insertUser(nombre, email, pass);
                     if (insert) {
                         Toast.makeText(registrarseActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                        finish();
+                                Intent intent = new Intent(registrarseActivity.this, personalizarActivity.class);
+                                startActivity(intent);
+                                finish();
+
                     } else {
                         Toast.makeText(registrarseActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                     }
@@ -62,6 +65,7 @@ public class registrarseActivity extends AppCompatActivity {
                 Intent intent = new Intent(registrarseActivity.this, loginActivity.class);
                 startActivity(intent);
             }
+
         });
     }
 }
