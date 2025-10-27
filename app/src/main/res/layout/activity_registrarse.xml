@@ -8,6 +8,20 @@
     android:orientation="vertical"
     android:padding="24dp">
 
+    <ImageButton
+        android:id="@+id/volver2"
+        android:layout_width="36dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="12dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
     <TextView
         android:id="@+id/txtTituloRegistro"
         android:layout_width="match_parent"

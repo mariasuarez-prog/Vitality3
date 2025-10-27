@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class registrarseActivity extends AppCompatActivity {
 
     EditText edtNombre, edtEmailRegistro, edtPasswordRegistro, edtPasswordConfirmar;
     Button btnRegistrarse;
+    ImageButton Volver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class registrarseActivity extends AppCompatActivity {
         edtPasswordRegistro = findViewById(R.id.edtPasswordRegistro);
         edtPasswordConfirmar = findViewById(R.id.edtPasswordConfirmar);
         btnRegistrarse = findViewById(R.id.btnRegistrarse);
+        Volver = findViewById(R.id.volver2);
 
         BDVitality dbHelper = new BDVitality(registrarseActivity.this);
 
@@ -51,6 +54,13 @@ public class registrarseActivity extends AppCompatActivity {
                         Toast.makeText(registrarseActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+        Volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(registrarseActivity.this, loginActivity.class);
+                startActivity(intent);
             }
         });
     }

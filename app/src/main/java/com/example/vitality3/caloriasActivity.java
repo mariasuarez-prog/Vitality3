@@ -1,12 +1,17 @@
 package com.example.vitality3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
+
+import android.content.Intent;
 import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import java.text.SimpleDateFormat;
@@ -23,6 +28,8 @@ public class caloriasActivity extends AppCompatActivity {
     String usuarioEmail;
     ArrayList<String> historialList;
     ArrayAdapter<String> adapter;
+    ImageButton Volver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,7 @@ public class caloriasActivity extends AppCompatActivity {
         edtCalorias = findViewById(R.id.edtCalorias);
         btnGuardar = findViewById(R.id.btnGuardar);
         lvHistorial = findViewById(R.id.lvHistorial);
+        Volver = findViewById(R.id.back);
 
         dbHelper = new BDVitality(this);
 
@@ -92,5 +100,13 @@ public class caloriasActivity extends AppCompatActivity {
         }
 
         adapter.notifyDataSetChanged();
+
+        Volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(caloriasActivity.this, homeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
