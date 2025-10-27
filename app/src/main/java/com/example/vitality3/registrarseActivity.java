@@ -39,23 +39,47 @@ public class registrarseActivity extends AppCompatActivity {
                 String pass = edtPasswordRegistro.getText().toString().trim();
                 String pass2 = edtPasswordConfirmar.getText().toString().trim();
 
+                // --- VALIDACIONES ---
                 if (nombre.isEmpty() || email.isEmpty() || pass.isEmpty() || pass2.isEmpty()) {
                     Toast.makeText(registrarseActivity.this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
-                } else if (!pass.equals(pass2)) {
-                    Toast.makeText(registrarseActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-                } else if (dbHelper.checkUserEmail(email)) {
-                    Toast.makeText(registrarseActivity.this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
-                } else {
-                    Boolean insert = dbHelper.insertUser(nombre, email, pass);
-                    if (insert) {
-                        Toast.makeText(registrarseActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(registrarseActivity.this, personalizarActivity.class);
-                                startActivity(intent);
-                                finish();
+                    return;
+                }
 
-                    } else {
-                        Toast.makeText(registrarseActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
-                    }
+                // Validar formato de correo electrónico
+                if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    Toast.makeText(registrarseActivity.this, "Ingresa un correo electrónico válido", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Validar contraseñas iguales
+                if (!pass.equals(pass2)) {
+                    Toast.makeText(registrarseActivity.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Validar fuerza de la contraseña
+                if (!esContrasenaSegura(pass)) {
+                    Toast.makeText(registrarseActivity.this,
+                            "La contraseña debe tener al menos 8 caracteres, una mayúscula, un número y un símbolo",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                // Validar si el correo ya existe
+                if (dbHelper.checkUserEmail(email)) {
+                    Toast.makeText(registrarseActivity.this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Si todo está correcto -> registrar
+                boolean insert = dbHelper.insertUser(nombre, email, pass);
+                if (insert) {
+                    Toast.makeText(registrarseActivity.this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(registrarseActivity.this, personalizarActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(registrarseActivity.this, "Error en el registro", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -67,5 +91,10 @@ public class registrarseActivity extends AppCompatActivity {
             }
 
         });
+    }
+    private boolean esContrasenaSegura(String password) {
+        // Mínimo 8 caracteres, al menos una mayúscula, un número y un símbolo especial
+        String patron = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=|<>?{}\\[\\]~-]).{8,}$";
+        return password.matches(patron);
     }
 }

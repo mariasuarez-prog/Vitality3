@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDFDFDFF"
+    android:background="#fff"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:scaleType="centerCrop">
+
+
+    <ImageView
+        android:id="@+id/gatoImage"
+        android:layout_width="497dp"
+        android:layout_height="751dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/fondogato"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageButton
         android:id="@+id/volver2"
-        android:layout_width="36dp"
-        android:layout_height="31dp"
+        android:layout_width="49dp"
+        android:layout_height="40dp"
         android:layout_marginTop="12dp"
         android:adjustViewBounds="true"
         android:background="@null"
@@ -61,14 +72,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/chatgpt_image_26_oct_2025__08_50_05_p_m_"
-        tools:layout_editor_absoluteX="28dp"
-        tools:layout_editor_absoluteY="202dp" />
 
     <EditText
         android:id="@+id/edtPasswordRegistro"
