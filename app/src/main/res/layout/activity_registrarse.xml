@@ -13,8 +13,8 @@
 
     <ImageView
         android:id="@+id/gatoImage"
-        android:layout_width="497dp"
-        android:layout_height="751dp"
+        android:layout_width="487dp"
+        android:layout_height="743dp"
         android:adjustViewBounds="true"
         android:src="@drawable/fondogato"
         app:layout_constraintBottom_toBottomOf="parent"
