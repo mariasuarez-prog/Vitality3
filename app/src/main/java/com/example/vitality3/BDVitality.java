@@ -22,6 +22,16 @@ public class BDVitality extends SQLiteOpenHelper {
                 "email TEXT PRIMARY KEY," +
                 "password TEXT)");
 
+        // -------- TABLA PERFIL/DATOS PERSONALES --------
+        db.execSQL("CREATE TABLE perfil(" +
+                "email TEXT PRIMARY KEY," +
+                "edad INTEGER," +
+                "peso REAL," +
+                "altura INTEGER," +
+                "sexo TEXT," +
+                "condiciones TEXT," +
+                "FOREIGN KEY(email) REFERENCES users(email) ON DELETE CASCADE)"); // Foreign key to users table
+
         // -------- TABLA CALORÍAS --------
         db.execSQL("CREATE TABLE calorias(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -34,6 +44,7 @@ public class BDVitality extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Eliminar tablas si existe versión antigua
         db.execSQL("DROP TABLE IF EXISTS users");
+        db.execSQL("DROP TABLE IF EXISTS perfil"); // Nuevo: eliminar tabla perfil
         db.execSQL("DROP TABLE IF EXISTS calorias");
         onCreate(db);
     }
@@ -73,6 +84,25 @@ public class BDVitality extends SQLiteOpenHelper {
     public Cursor getUsuarioPorEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM users WHERE email = ?", new String[]{email});
+    }
+
+    // ================= MÉTODOS PERFIL/DATOS PERSONALES =================
+
+    /**
+     * Inserta los datos de perfil y salud del usuario.
+     */
+    public boolean insertProfile(String email, int edad, double peso, int altura, String sexo, String condiciones) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("email", email);
+        values.put("edad", edad);
+        values.put("peso", peso);
+        values.put("altura", altura);
+        values.put("sexo", sexo);
+        values.put("condiciones", condiciones);
+
+        long result = db.insert("perfil", null, values);
+        return result != -1;
     }
 
     // ================= MÉTODOS CALORÍAS =================

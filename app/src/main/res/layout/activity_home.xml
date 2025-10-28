@@ -1,113 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="#F5F5F5"
+    android:backgroundTint="@color/white"
     tools:context=".homeActivity">
 
     <TextView
-        android:id="@+id/tvWelcome"
+        android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola, Usuario"
-        android:textSize="24sp"
+        android:layout_marginTop="64dp"
+        android:text="¡Bienvenido a Vitality!"
+        android:textColor="#3FB551"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvGoalMessage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="¡Tu meta diaria es de 2000 calorías!"
-        android:textAlignment="center"
+        android:id="@+id/tv_subtitle"
+        android:layout_width="361dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="8dp"
+        android:text="Selecciona una opción para empezar ta explorar nuestra aplicación."
+        android:textColor="#6A6A6A"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
 
-    <TextView
-        android:id="@+id/tvGoalExplanation"
-        android:layout_width="223dp"
-        android:layout_height="119dp"
-        android:layout_marginTop="16dp"
-        android:text="En esta barra puedes ver qué tan cerca estás de tu meta diaria."
-        android:textSize="20sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGoalMessage" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_diario"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#4CAF50"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#60B41E"
+                android:backgroundTint="#1EB823"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Tus Metas"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_dietas"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="#2196F3"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#37501A"
+                android:backgroundTint="#4CAF8C"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="Planes de Dietas"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvGoalExplanation"
-        app:layout_constraintTop_toTopOf="@+id/tvGoalExplanation"
-        app:srcCompat="@drawable/corazonhome__2_" />
-
-
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progressCalorias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:indeterminate="false"
-        app:indicatorColor="#4CAF50"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/imageView4"
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="400dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:trackColor="#E0E0E0"
-        app:trackThickness="24dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/homecorazon" />
 
-    <TextView
-        android:id="@+id/tvCaloriasTotales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calorías totales: 0 kcal"
-        android:textSize="18sp"
-        android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="@+id/progressCalorias"
-        app:layout_constraintEnd_toEndOf="@+id/progressCalorias"
-        app:layout_constraintTop_toTopOf="@+id/progressCalorias"
-        app:layout_constraintBottom_toBottomOf="@+id/progressCalorias" />
-
-
-    <Button
-        android:id="@+id/btnCalorias"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#61C161"
-        android:text="Registrar Calorías"
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="268dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="154dp"
+        android:layout_marginEnd="77dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressCalorias" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCalorias" />
-
-    <Button
-        android:id="@+id/btnCerrarSesion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#97BC9B"
-        android:text="Cerrar Sesión"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/manoshome" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
