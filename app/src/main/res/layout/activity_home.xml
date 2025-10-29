@@ -34,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -109,7 +110,9 @@
         android:layout_width="350dp"
         android:layout_height="450dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="540dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/homecorazon" />
@@ -118,8 +121,9 @@
         android:id="@+id/imageView5"
         android:layout_width="268dp"
         android:layout_height="123dp"
-        android:layout_marginTop="154dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="77dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/manoshome" />
