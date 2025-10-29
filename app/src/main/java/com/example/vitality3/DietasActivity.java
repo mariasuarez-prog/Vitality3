@@ -40,11 +40,11 @@ public class DietasActivity extends AppCompatActivity {
             }
         });
 
-        // Listener para la Dieta Vegana
+        // Listener para la Dieta TLC
         cardVegana.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                abrirSitioWeb("hhttp://assets.cardiosource.com/cardiosmart/csp/spanish/abk6159.pdf");
+                abrirSitioWeb("https://my.clevelandclinic.org/health/articles/16867-cholesterol--nutrition-tlc");
             }
         });
         Volver.setOnClickListener(new View.OnClickListener() {
