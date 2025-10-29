@@ -23,7 +23,7 @@ public class diarioActivity extends AppCompatActivity {
     BDVitality dbHelper;
     String usuarioEmail;
     ImageButton Volver;
-    int metaDiaria = 2000; // Meta diaria de calorías
+    int metaDiaria = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +33,6 @@ public class diarioActivity extends AppCompatActivity {
         Volver = findViewById(R.id.atras);
         progressCalorias.setIndeterminate(false);
         progressCalorias.setMax(2000);
-
-        progressCalorias.setProgress(5);    // debería verse casi vacío
-        Log.d("HomeActivityTest", "Progress después de set 5: " + progressCalorias.getProgress());
-
-        progressCalorias.setProgress(500);  // debería verse ~25%
-        Log.d("HomeActivityTest", "Progress después de set 500: " + progressCalorias.getProgress());
 
         tvWelcome = findViewById(R.id.tvWelcome);
         tvCaloriasTotales = findViewById(R.id.tvCaloriasTotales);
@@ -101,7 +95,6 @@ public class diarioActivity extends AppCompatActivity {
 
         float porcentaje = (float) total / metaDiaria;
 
-        // Cambiar color dinámicamente
         if (total <= 0) {
             progressCalorias.setIndicatorColor(Color.parseColor("#BDBDBD")); // gris
         } else if (porcentaje < 1.0f) {
@@ -109,8 +102,6 @@ public class diarioActivity extends AppCompatActivity {
         } else {
             progressCalorias.setIndicatorColor(Color.parseColor("#F44336")); // rojo
         }
-
-        Log.d("HomeActivity", "Progreso: " + progreso + " / " + metaDiaria + " (" + porcentaje + ")");
     }
 
 

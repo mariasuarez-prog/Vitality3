@@ -22,8 +22,6 @@ public class homeActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
-        // Inicializar CardViews
         cardDiario = findViewById(R.id.card_diario);
         cardDietas = findViewById(R.id.card_dietas);
 
@@ -39,11 +37,9 @@ public class homeActivity extends AppCompatActivity {
             }
         });
 
-        // Listener para las Dietas
         cardDietas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // A DietasActivity
                 Intent intent = new Intent(homeActivity.this, DietasActivity.class);
                 startActivity(intent);
             }

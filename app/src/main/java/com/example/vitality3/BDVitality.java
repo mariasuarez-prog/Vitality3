@@ -16,13 +16,13 @@ public class BDVitality extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // -------- TABLA USUARIOS --------
+        //TABLA USUARIOS
         db.execSQL("CREATE TABLE users(" +
                 "nombre TEXT," +
                 "email TEXT PRIMARY KEY," +
                 "password TEXT)");
 
-        // -------- TABLA PERFIL/DATOS PERSONALES --------
+        // TABLA PERFIL/DATOS PERSONALES
         db.execSQL("CREATE TABLE perfil(" +
                 "email TEXT PRIMARY KEY," +
                 "edad INTEGER," +
@@ -30,9 +30,9 @@ public class BDVitality extends SQLiteOpenHelper {
                 "altura INTEGER," +
                 "sexo TEXT," +
                 "condiciones TEXT," +
-                "FOREIGN KEY(email) REFERENCES users(email) ON DELETE CASCADE)"); // Foreign key to users table
+                "FOREIGN KEY(email) REFERENCES users(email) ON DELETE CASCADE)");
 
-        // -------- TABLA CALORÍAS --------
+        // TABLA CALORÍAS
         db.execSQL("CREATE TABLE calorias(" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "email TEXT," +
@@ -44,14 +44,11 @@ public class BDVitality extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Eliminar tablas si existe versión antigua
         db.execSQL("DROP TABLE IF EXISTS users");
-        db.execSQL("DROP TABLE IF EXISTS perfil"); // Nuevo: eliminar tabla perfil
+        db.execSQL("DROP TABLE IF EXISTS perfil");
         db.execSQL("DROP TABLE IF EXISTS calorias");
         onCreate(db);
     }
 
-    // ================= MÉTODOS USUARIOS =================
-
-    // Insertar usuario
     public boolean insertUser(String nombre, String email, String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -86,11 +83,7 @@ public class BDVitality extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM users WHERE email = ?", new String[]{email});
     }
 
-    // ================= MÉTODOS PERFIL/DATOS PERSONALES =================
-
-    /**
-     * Inserta los datos de perfil y salud del usuario.
-     */
+    //Inserta los datos de perfil y salud del usuario.
     public boolean insertProfile(String email, int edad, double peso, int altura, String sexo, String condiciones) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -105,7 +98,7 @@ public class BDVitality extends SQLiteOpenHelper {
         return result != -1;
     }
 
-    // ================= MÉTODOS CALORÍAS =================
+    // MÉTODOS CALORÍAS
 
     // Insertar calorías
     public boolean insertarCalorias(String email, String fecha, int cantidad) {

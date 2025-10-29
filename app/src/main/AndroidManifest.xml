@@ -18,10 +18,6 @@
             android:name=".DietasActivity"
             android:exported="false" />
         <activity
-            android:name=".personalizarActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Vitality3" />
-        <activity
             android:name=".registrarseActivity"
             android:exported="false" />
         <activity

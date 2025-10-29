@@ -15,14 +15,13 @@ public class loginActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword;
     Button btnLogin;
     TextView txtRegister;
-    BDVitality dbHelper; // instancia de la base de datos
+    BDVitality dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Vincular elementos del XML
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -31,7 +30,6 @@ public class loginActivity extends AppCompatActivity {
         // Inicializar BD
         dbHelper = new BDVitality(loginActivity.this);
 
-        // Acción del botón Iniciar sesión
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +54,6 @@ public class loginActivity extends AppCompatActivity {
             }
         });
 
-        // Texto para ir a la pantalla de registro
         txtRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

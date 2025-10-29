@@ -36,23 +36,17 @@ public class caloriasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorias);
 
-        // Vincular elementos
         edtCalorias = findViewById(R.id.edtCalorias);
         btnGuardar = findViewById(R.id.btnGuardar);
         lvHistorial = findViewById(R.id.lvHistorial);
         Volver = findViewById(R.id.back);
 
         dbHelper = new BDVitality(this);
-
-        // Recibir email del usuario desde HomeActivity
         usuarioEmail = getIntent().getStringExtra("usuarioEmail");
-
-        // Inicializar lista y adaptador
         historialList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historialList);
         lvHistorial.setAdapter(adapter);
 
-        // Mostrar historial inicial
         mostrarHistorial();
 
         // Guardar calorías
