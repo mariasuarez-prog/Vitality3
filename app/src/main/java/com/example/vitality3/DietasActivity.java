@@ -24,6 +24,7 @@ public class DietasActivity extends AppCompatActivity {
         cardMediterranea = findViewById(R.id.card_dieta_mediterranea);
         cardVegana = findViewById(R.id.card_dieta_vegana);
 
+
         // Listener para la Dieta DASH (Presión arterial)
         cardDash.setOnClickListener(new View.OnClickListener() {
             @Override

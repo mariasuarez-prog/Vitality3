@@ -17,6 +17,8 @@ public class homeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Prefs prefs = new Prefs(this);
+        usuarioEmail = prefs.getEmail();
 
 
         if (getSupportActionBar() != null) {
@@ -27,6 +29,7 @@ public class homeActivity extends AppCompatActivity {
 
         dbHelper = new BDVitality(this);
         usuarioEmail = getIntent().getStringExtra("usuarioEmail");
+
         cardDiario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

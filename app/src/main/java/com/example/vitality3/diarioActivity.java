@@ -42,6 +42,8 @@ public class diarioActivity extends AppCompatActivity {
 
         dbHelper = new BDVitality(this);
         usuarioEmail = getIntent().getStringExtra("usuarioEmail");
+        Prefs prefs = new Prefs(this);
+        usuarioEmail = prefs.getEmail();
 
         mostrarNombreUsuario();
         mostrarCaloriasTotales();
@@ -64,6 +66,7 @@ public class diarioActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(diarioActivity.this, homeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

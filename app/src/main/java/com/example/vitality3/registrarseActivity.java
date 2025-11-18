@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -59,44 +58,6 @@ public class registrarseActivity extends AppCompatActivity {
         cbLactosa = findViewById(R.id.cbLactosa);
         cbOtros = findViewById(R.id.cbOtros);
         btnGuardarDatos = findViewById(R.id.btnGuardarDatos);
-    }
-
-    private void realizarRegistroCompleto() {
-        String nombre = edtNombre.getText().toString().trim();
-        String email = edtEmailRegistro.getText().toString().trim();
-        String pass = edtPasswordRegistro.getText().toString().trim();
-        String pass2 = edtPasswordConfirmar.getText().toString().trim();
-
-        if (!validarDatosRegistro(nombre, email, pass, pass2)) {
-            return;
-        }
-
-        if (dbHelper.checkUserEmail(email)) {
-            Toast.makeText(this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        boolean userInsert = dbHelper.insertUser(nombre, email, pass);
-
-        if (!userInsert) {
-            Toast.makeText(this, "Error al crear la cuenta. Por favor, intenta de nuevo.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (!validarDatosPerfil()) {
-            return;
-        }
-
-        boolean profileInsert = guardarDatosPerfil(email);
-
-        if (profileInsert) {
-            Toast.makeText(this, "Registro completo y perfil guardado exitosamente.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(registrarseActivity.this, homeActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "Error al guardar los datos de perfil. Contacta soporte.", Toast.LENGTH_SHORT).show();
-        }
     }
 
 
@@ -163,7 +124,7 @@ public class registrarseActivity extends AppCompatActivity {
     }
 
     private boolean guardarDatosPerfil(String email) {
-        int edad = Integer.parseInt(etEdad.getText().toString());
+       int edad = Integer.parseInt(etEdad.getText().toString());
         double peso = Double.parseDouble(etPeso.getText().toString());
         int altura = Integer.parseInt(etAltura.getText().toString());
 
@@ -188,5 +149,44 @@ public class registrarseActivity extends AppCompatActivity {
         }
 
         return dbHelper.insertProfile(email, edad, peso, altura, sexo, enfermedades);
+    }
+    private void realizarRegistroCompleto() {
+        Prefs prefs = new Prefs(this);
+        String nombre = edtNombre.getText().toString().trim();
+        String email = edtEmailRegistro.getText().toString().trim();
+        String pass = edtPasswordRegistro.getText().toString().trim();
+        String pass2 = edtPasswordConfirmar.getText().toString().trim();
+
+        if (!validarDatosRegistro(nombre, email, pass, pass2)) {
+            return;
+        }
+
+        if (dbHelper.checkUserEmail(email)) {
+            Toast.makeText(this, "Este correo ya está registrado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        boolean userInsert = dbHelper.insertUser(nombre, email, pass);
+
+        if (!userInsert) {
+            Toast.makeText(this, "Error al crear la cuenta. Por favor, intenta de nuevo.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!validarDatosPerfil()) {
+            return;
+        }
+
+        boolean profileInsert = guardarDatosPerfil(email);
+
+        if (profileInsert) {
+            prefs.saveEmail(email);
+            Toast.makeText(this, "Registro completo y perfil guardado exitosamente.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(registrarseActivity.this, homeActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Error al guardar los datos de perfil. Contacta soporte.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

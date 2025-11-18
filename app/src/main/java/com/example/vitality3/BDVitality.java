@@ -11,7 +11,7 @@ public class BDVitality extends SQLiteOpenHelper {
     public static final String DBNAME = "vitality.db";
 
     public BDVitality(Context context) {
-        super(context, DBNAME, null, 1);
+        super(context, DBNAME, null, 3);
     }
 
     @Override
@@ -24,7 +24,8 @@ public class BDVitality extends SQLiteOpenHelper {
 
         // TABLA PERFIL/DATOS PERSONALES
         db.execSQL("CREATE TABLE perfil(" +
-                "email TEXT PRIMARY KEY," +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                "email TEXT UNIQUE," +
                 "edad INTEGER," +
                 "peso REAL," +
                 "altura INTEGER," +
@@ -37,7 +38,8 @@ public class BDVitality extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "email TEXT," +
                 "fecha TEXT," +
-                "cantidad INTEGER)");
+                "cantidad INTEGER,"+
+                "FOREIGN KEY(email) REFERENCES users(email) ON DELETE CASCADE)");
     }
 
     @Override
@@ -47,6 +49,11 @@ public class BDVitality extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS perfil");
         db.execSQL("DROP TABLE IF EXISTS calorias");
         onCreate(db);
+    }
+    @Override
+    public void onConfigure(SQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
     }
 
     public boolean insertUser(String nombre, String email, String password) {

@@ -46,6 +46,9 @@ public class caloriasActivity extends AppCompatActivity {
         historialList = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, historialList);
         lvHistorial.setAdapter(adapter);
+        Prefs prefs = new Prefs(this);
+        usuarioEmail = prefs.getEmail();
+
 
         mostrarHistorial();
 
@@ -100,6 +103,7 @@ public class caloriasActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(caloriasActivity.this, homeActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

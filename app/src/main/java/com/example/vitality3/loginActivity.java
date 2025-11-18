@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class loginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
@@ -26,6 +27,7 @@ public class loginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
         txtRegister = findViewById(R.id.txtRegister);
+        Prefs prefs = new Prefs(this);
 
         // Inicializar BD
         dbHelper = new BDVitality(loginActivity.this);
@@ -41,8 +43,8 @@ public class loginActivity extends AppCompatActivity {
                 } else {
                     Boolean checkUser = dbHelper.checkEmailPassword(email, password);
                     if (checkUser) {
+                        prefs.saveEmail(email);
                         Toast.makeText(loginActivity.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-
                         Intent intent = new Intent(loginActivity.this, homeActivity.class);
                         intent.putExtra("usuarioEmail", email);
                         startActivity(intent);
